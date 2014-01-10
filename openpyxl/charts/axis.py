@@ -148,3 +148,16 @@ class ValueAxis(Axis):
     auto = False
     cross_between = 'between'
     type= "valAx"
+
+
+class SeriesAxis(Axis):
+
+    id = 60880064
+    cross = 60873344
+    position = Axis.POSITION_BOTTOM
+    major_gridlines = None
+    tick_label_position = 'nextTo'
+    crosses = 'autoZero'
+    auto = False
+    ax.cross_between = 'between'
+    types = "SerAx"
