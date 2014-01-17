@@ -22,18 +22,15 @@
 # @author: see AUTHORS file
 
 """Imports for the openpyxl package."""
+import warnings
 
 try:
-    from lxml import etree
-    LXML = True
+    from lxml.etree import LXML_VERSION
+    LXML = LXML_VERSION >= (3, 2, 5, 0)
+    if LXML is False:
+        warnings.warn("The installed version of lxml is too old to be used with openpyxl")
 except ImportError:
     LXML = False
-
-# Tests require lxml but openpyxl itself doesn't. Allow it to be overwritten by test configuration
-try:
-    from .tests import LXML
-except ImportError:
-    pass
 
 # package imports
 from openpyxl import cell
@@ -53,8 +50,8 @@ from openpyxl.reader.excel import load_workbook
 # constants
 
 __major__ = 1  # for major interface/format changes
-__minor__ = 9  # for minor interface/format changes
-__release__ = 0  # for tweaks, bug-fixes, or development
+__minor__ = 8  # for minor interface/format changes
+__release__ = 1  # for tweaks, bug-fixes, or development
 
 __version__ = '%d.%d.%d' % (__major__, __minor__, __release__)
 
